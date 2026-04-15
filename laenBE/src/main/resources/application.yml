@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+      url: jdbc:postgresql://localhost:5432/loan_db
+      username: loan_user
+      password: loan_pass
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  flyway:
+    enabled: true
+
+loan:
+  max-age: 70
