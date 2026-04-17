@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-      url: jdbc:postgresql://localhost:5432/loan_db
-      username: loan_user
-      password: loan_pass
+    url: jdbc:postgresql://localhost:5434/loan_db
+    username: loan_user
+    password: loan_pass
 
   jpa:
     hibernate:

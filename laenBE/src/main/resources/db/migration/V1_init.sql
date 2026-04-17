@@ -2,7 +2,7 @@ create table loan_application (
     id uuid primary key,
     first_name varchar(32) not null,
     last_name varchar(32) not null,
-    isikukood varchar(11) not null unique,
+    personal_code varchar(11) not null unique,
     loan_period_months int not null,
     interest_margin numeric(10,3) not null,
     interest_rate numeric(10,3) not null,
@@ -15,6 +15,7 @@ create table loan_application (
 create table payment_schedule (
     id uuid primary key,
     loan_application_id uuid not null references loan_application(id),
+    payment_number integer not null,
     payment_date date not null,
     principal numeric(15,2) not null,
     interest numeric(15,2) not null,
