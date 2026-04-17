@@ -1,5 +1,6 @@
 package ee.coop.laenbe.dto;
 
+import ee.coop.laenbe.validation.ValidPersonalCode;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;

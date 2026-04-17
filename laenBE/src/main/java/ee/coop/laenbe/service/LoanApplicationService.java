@@ -7,6 +7,7 @@ import ee.coop.laenbe.enums.LoanStatus;
 import ee.coop.laenbe.enums.RejectionReason;
 import ee.coop.laenbe.repository.LoanApplicationRepository;
 import ee.coop.laenbe.repository.PaymentScheduleRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,9 @@ public class LoanApplicationService {
     @Value("${loan.max-age}")
     private int maxAge;
 
+    @Transactional
     public LoanApplication submitApplication(LoanApplicationRequest request) {
-        boolean applicationExists = loanRepo.existisPersonalCodeAndStatus(request.getPersonalCode(), List.of(LoanStatus.STARTED, LoanStatus.IN_REVIEW));
+        boolean applicationExists = loanRepo.existsByPersonalCodeAndStatusIn(request.getPersonalCode(), List.of(LoanStatus.STARTED, LoanStatus.IN_REVIEW));
 
         if (applicationExists) {
             throw new IllegalStateException("Active application already exists for this person.");
@@ -111,8 +113,8 @@ public class LoanApplicationService {
     private int calculateAge(String personalCode) {
         int year = Integer.parseInt(personalCode.substring(1,3));
         year += (personalCode.charAt(0) == '3' || personalCode.charAt(0) == '4') ? 1900 : 2000;
-        int month = Integer.parseInt(personalCode.substring(4, 6));
-        int  day = Integer.parseInt(personalCode.substring(6, 8));
+        int month = Integer.parseInt(personalCode.substring(3, 5));
+        int  day = Integer.parseInt(personalCode.substring(5, 7));
 
         return java.time.Period.between(java.time.LocalDate.of(year, month, day), java.time.LocalDate.now()).getYears();
     }
