@@ -1,7 +1,5 @@
-Rakenduse käivitamiseks liikuge kausta
-
-laenBE
-
-käivitage käsuga
-
+## Rakenduse käivitamiseks liikuge kausta laenBE
+## Käivitage käsuga
+```
 docker compose up
+```
