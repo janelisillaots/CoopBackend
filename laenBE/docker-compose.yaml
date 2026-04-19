@@ -4,12 +4,15 @@ services:
   db:
     image: postgres:16
     container_name: loan_db
+    restart: always
     environment:
       POSTGRES_DB: loan_db
       POSTGRES_USER: loan_user
       POSTGRES_PASSWORD: loan_pass
     ports:
-      - "5434:5432"
+      - "5432:5432"
+    volumes:
+      - loan_db_data:/var/lib/postgresql/data
 
   app:
     build: .
@@ -22,3 +25,6 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/loan_db
       SPRING_DATASOURCE_USERNAME: loan_user
       SPRING_DATASOURCE_PASSWORD: loan_pass
+
+volumes:
+  loan_db_data:

@@ -2,9 +2,13 @@ package ee.coop.laenbe.dto;
 
 import ee.coop.laenbe.validation.ValidPersonalCode;
 import jakarta.validation.constraints.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
+@Setter
+@Getter
 public class LoanApplicationRequest {
 
     @Size(max=32)
@@ -35,59 +39,4 @@ public class LoanApplicationRequest {
     @DecimalMin("5000.0")
     private BigDecimal loanAmount;
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getPersonalCode() {
-        return personalCode;
-    }
-
-    public void setPersonalCode(String personalCode) {
-        this.personalCode = personalCode;
-    }
-
-    public Integer getLoanPeriodMonths() {
-        return loanPeriodMonths;
-    }
-
-    public void setLoanPeriodMonths(Integer loanPeriodMonths) {
-        this.loanPeriodMonths = loanPeriodMonths;
-    }
-
-    public BigDecimal getInterestMargin() {
-        return interestMargin;
-    }
-
-    public void setInterestMargin(BigDecimal interestMargin) {
-        this.interestMargin = interestMargin;
-    }
-
-    public BigDecimal getBaseInterestRate() {
-        return baseInterestRate;
-    }
-
-    public void setBaseInterestRate(BigDecimal interestRate) {
-        this.baseInterestRate = interestRate;
-    }
-
-    public BigDecimal getLoanAmount() {
-        return loanAmount;
-    }
-
-    public void setLoanAmount(BigDecimal loanAmount) {
-        this.loanAmount = loanAmount;
-    }
 }

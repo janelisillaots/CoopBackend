@@ -1,11 +1,14 @@
 package ee.coop.laenbe.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Getter
 @Entity
 @Table(name="payment_schedule")
 public class PaymentSchedule {
@@ -13,88 +16,36 @@ public class PaymentSchedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="loan_application_id", nullable = false)
     private LoanApplication loanApplication;
 
+    @Setter
     @Column(nullable = false)
     private Integer paymentNumber;
 
+    @Setter
     @Column(name="payment_date", nullable = false)
     private LocalDate paymentDate;
 
+    @Setter
     @Column(name="principal", nullable = false, precision = 15, scale = 2)
     private BigDecimal principal;
 
+    @Setter
     @Column(name="interest", nullable = false, precision = 15, scale = 2)
     private BigDecimal interest;
 
+    @Setter
     @Column(name="total_payment", nullable = false, precision = 15, scale = 2)
     private BigDecimal totalPayment;
 
+    @Setter
     @Column(name="remaining_balance", nullable = false, precision = 15, scale = 2)
     private BigDecimal remainingBalance;
 
     public PaymentSchedule() {
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public LoanApplication getLoanApplication() {
-        return loanApplication;
-    }
-
-    public void setLoanApplication(LoanApplication loanApplication) {
-        this.loanApplication = loanApplication;
-    }
-
-    public Integer getPaymentNumber() {
-        return paymentNumber;
-    }
-
-    public void setPaymentNumber(Integer paymentNumber) {
-        this.paymentNumber = paymentNumber;
-    }
-
-    public LocalDate getPaymentDate() {
-        return paymentDate;
-    }
-
-    public void setPaymentDate(LocalDate paymentDate) {
-        this.paymentDate = paymentDate;
-    }
-
-    public BigDecimal getPrincipal() {
-        return principal;
-    }
-
-    public void setPrincipal(BigDecimal principal) {
-        this.principal = principal;
-    }
-
-    public BigDecimal getInterest() {
-        return interest;
-    }
-
-    public void setInterest(BigDecimal interest) {
-        this.interest = interest;
-    }
-
-    public BigDecimal getTotalPayment() {
-        return totalPayment;
-    }
-
-    public void setTotalPayment(BigDecimal totalPayment) {
-        this.totalPayment = totalPayment;
-    }
-
-    public BigDecimal getRemainingBalance() {
-        return remainingBalance;
-    }
-
-    public void setRemainingBalance(BigDecimal remainingBalance) {
-        this.remainingBalance = remainingBalance;
-    }
 }

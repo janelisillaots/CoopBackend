@@ -98,7 +98,7 @@ public class LoanApplicationService {
 
     private BigDecimal calculateAnnuity(BigDecimal principal, BigDecimal monthlyInterestRate, int loanPeriodMonths) {
         if (monthlyInterestRate.compareTo(BigDecimal.ZERO) == 0) {
-            return principal.divide(BigDecimal.valueOf(loanPeriodMonths), 10, RoundingMode.HALF_UP);
+           return principal.divide(BigDecimal.valueOf(loanPeriodMonths), 10, RoundingMode.HALF_UP);
         }
 
         //annuiteedi arvutamine
@@ -117,9 +117,5 @@ public class LoanApplicationService {
         int  day = Integer.parseInt(personalCode.substring(5, 7));
 
         return java.time.Period.between(java.time.LocalDate.of(year, month, day), java.time.LocalDate.now()).getYears();
-    }
-
-    private void checkAge(LoanApplication app){
-
     }
 }
